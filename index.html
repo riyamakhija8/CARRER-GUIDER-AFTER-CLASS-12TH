@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Guide for Class 12th Students</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Landing Page -->
+        <div class="section active" id="landing">
+            <h1>🎯 Your Future Starts Here</h1>
+            <p>Discover the perfect career path after Class 12th with our comprehensive assessment designed specifically for Indian students.</p>
+            
+            <div class="intro-features">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <div class="feature-title">Personality Analysis</div>
+                    <div class="feature-desc">Holland Code (RIASEC) assessment to understand your interests</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Aptitude Testing</div>
+                    <div class="feature-desc">Evaluate your logical and numerical reasoning abilities</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <div class="feature-title">Stream-Based Guidance</div>
+                    <div class="feature-desc">Personalized recommendations based on your Class 12th stream</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <div class="feature-title">Career Roadmap</div>
+                    <div class="feature-desc">Get clear direction for undergraduate courses and careers</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-large" onclick="nextSection()">Get Started →</button>
+            </div>
+        </div>
+
+        <!-- Sign-Up Page -->
+        <div class="section" id="signup">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress" style="width: 20%;"></div>
+                </div>
+                <div class="progress-text">Step 1 of 5: Personal Information</div>
+            </div>
+            
+            <h2>👋 Let's Get to Know You</h2>
+            <div class="error-message" id="signup-error"></div>
+            
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+            </form>
+            
+            <div class="navigation-buttons">
+                <button class="btn btn-secondary" onclick="previousSection()">← Back</button>
+                <button class="btn" onclick="validateAndNext('signup')">Next →</button>
+            </div>
+        </div>
+
+        <!-- Academic Details -->
+        <div class="section" id="academic">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 40%;"></div>
+                </div>
+                <div class="progress-text">Step 2 of 5: Academic Background</div>
+            </div>
+            
+            <h2>📚 Your Academic Journey</h2>
+            <div class="error-message" id="academic-error"></div>
+            
+            <form id="academic-form">
+                <div class="form-group">
+                    <label>Select Your Stream *</label>
+                    <div class="stream-selection">
+                        <div class="stream-option" onclick="selectStream('PCM')">
+                            <div class="stream-icon">🔬</div>
+                            <div class="stream-name">PCM</div>
+                            <div class="stream-desc">Physics, Chemistry, Mathematics</div>
+                        </div>
+                        <div class="stream-option" onclick="selectStream('PCB')">
+                            <div class="stream-icon">🧬</div>
+                            <div class="stream-name">PCB</div>
+                            <div class="stream-desc">Physics, Chemistry, Biology</div>
+                        </div>
+                        <div class="stream-option" onclick="selectStream('Commerce')">
+                            <div class="stream-icon">💼</div>
+                            <div class="stream-name">Commerce</div>
+                            <div class="stream-desc">Accounts, Business, Economics</div>
+                        </div>
+                        <div class="stream-option" onclick="selectStream('Arts')">
+                            <div class="stream-icon">🎨</div>
+                            <div class="stream-name">Arts</div>
+                            <div class="stream-desc">History, Geography, Literature</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="selectedStream" name="stream" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Favorite Subjects (Select up to 3) *</label>
+                    <div class="subjects-grid" id="subjects-container">
+                        <!-- Subjects will be populated based on stream selection -->
+                    </div>
+                </div>
+            </form>
+            
+            <div class="navigation-buttons">
+                <button class="btn btn-secondary" onclick="previousSection()">← Back</button>
+                <button class="btn" onclick="validateAndNext('academic')">Next →</button>
+            </div>
+        </div>
+
+        <!-- Holland Code Test -->
+        <div class="section" id="holland-test">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%;"></div>
+                </div>
+                <div class="progress-text">Step 3 of 5: Personality Assessment</div>
+            </div>
+            
+            <h2>🧠 Holland Code Interest Test</h2>
+            <p>Rate how much you agree with each statement. Be honest - there are no right or wrong answers!</p>
+            
+            <div id="holland-questions-container">
+                <!-- Questions will be dynamically loaded here -->
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn btn-secondary" onclick="previousSection()">← Back</button>
+                <button class="btn" onclick="calculateHollandScore()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Aptitude Test -->
+        <div class="section" id="aptitude-test">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%;"></div>
+                </div>
+                <div class="progress-text">Step 4 of 5: Aptitude Assessment</div>
+            </div>
+            
+            <h2>📊 Aptitude Test</h2>
+            <p>Test your logical reasoning and numerical ability. Choose the best answer for each question.</p>
+            
+            <div id="aptitude-questions-container">
+                <!-- Questions will be dynamically loaded here -->
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn btn-secondary" onclick="previousSection()">← Back</button>
+                <button class="btn" onclick="calculateAptitudeScore()">See Results →</button>
+            </div>
+        </div>
+
+        <!-- Results Page -->
+        <div class="section" id="results">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                </div>
+                <div class="progress-text">Step 5 of 5: Your Results</div>
+            </div>
+            
+            <h2>🎉 Your Career Profile</h2>
+            <p>Based on your responses, here's your personalized career guidance:</p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-title">
+                        <span class="icon">🧠</span>
+                        Your Holland Code Profile
+                    </div>
+                    <div class="result-content" id="holland-results">
+                        <!-- Holland code results will be displayed here -->
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-title">
+                        <span class="icon">📊</span>
+                        Aptitude Assessment
+                    </div>
+                    <div class="result-content" id="aptitude-results">
+                        <!-- Aptitude results will be displayed here -->
+                    </div>
+                </div>
+                
+                <div class="career-recommendations">
+                    <div class="result-title">
+                        <span class="icon">🎯</span>
+                        Recommended Career Paths
+                    </div>
+                    <div id="career-recommendations">
+                        <!-- Career recommendations will be displayed here -->
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-title">
+                        <span class="icon">💼</span>
+                        Career Options for You
+                    </div>
+                    <div class="result-content">
+                        <p>Click on any career below to learn more about it:</p>
+                        <div id="career-buttons-container" class="career-buttons-grid">
+                            <!-- Career buttons will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-title">
+                        <span class="icon">🚀</span>
+                        Next Steps for Success
+                    </div>
+                    <div class="result-content" id="next-steps">
+                        <!-- Next steps will be displayed here -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn btn-secondary" onclick="startOver()">← Take Test Again</button>
+                <button class="btn" onclick="downloadResults()">Download Results</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Career Details Modal -->
+    <div id="careerModal" class="career-modal">
+        <div class="career-modal-content">
+            <div class="career-modal-header">
+                <h3 class="career-modal-title" id="modalCareerTitle">Career Title</h3>
+                <button class="career-modal-close" onclick="closeCareerModal()">&times;</button>
+            </div>
+            <div class="career-modal-body" id="modalCareerBody">
+                <!-- Career details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
